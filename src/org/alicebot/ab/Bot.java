@@ -22,6 +22,7 @@ package org.alicebot.ab;
 import org.alicebot.ab.utils.IOUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -416,9 +417,9 @@ public class Bot {
                 String fileName = c.getFilename();
                 if (fileMap.containsKey(fileName)) bw = fileMap.get(fileName);
                 else {
-                    bw = new BufferedWriter(new FileWriter(aimlif_path+"/"+fileName+MagicStrings.aimlif_file_suffix));
+                    String fn = aimlif_path+"/"+fileName+MagicStrings.aimlif_file_suffix;
+                    bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fn), StandardCharsets.UTF_8));
                     fileMap.put(fileName, bw);
-
                 }
                 bw.write(Category.categoryToIF(c));
                 bw.newLine();
@@ -437,9 +438,7 @@ public class Bot {
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
-
             }
-
         }
         File dir = new File(aimlif_path);
         dir.setLastModified(new Date().getTime());
@@ -467,7 +466,7 @@ public class Bot {
                 if (fileMap.containsKey(fileName)) bw = fileMap.get(fileName);
                 else {
                     String copyright = Utilities.getCopyright(this, fileName);
-                    bw = new BufferedWriter(new FileWriter(aiml_path+"/"+fileName));
+                    bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), StandardCharsets.UTF_8));
                     fileMap.put(fileName, bw);
                     bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "\n" +
                             "<aiml>\n");
