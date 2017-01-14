@@ -466,7 +466,8 @@ public class Bot {
                 if (fileMap.containsKey(fileName)) bw = fileMap.get(fileName);
                 else {
                     String copyright = Utilities.getCopyright(this, fileName);
-                    bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), StandardCharsets.UTF_8));
+                    String fn = aiml_path+"/"+fileName;
+                    bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fn), StandardCharsets.UTF_8));
                     fileMap.put(fileName, bw);
                     bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "\n" +
                             "<aiml>\n");
