@@ -378,8 +378,9 @@ public class Bot {
         File existsPath = new File(aimlif_path);
         if (existsPath.exists())
         try {
-            //Construct the bw object
-            bw = new BufferedWriter(new FileWriter(aimlif_path+"/"+filename)) ;
+            //Construct the bw object (force it to be UTF-8)
+            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(aimlif_path+"/"+filename), StandardCharsets.UTF_8));
+            
             for (Category category : cats) {
                 bw.write(Category.categoryToIF(category));
                 bw.newLine();
