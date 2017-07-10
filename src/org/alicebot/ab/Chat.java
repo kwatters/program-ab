@@ -206,7 +206,6 @@ public class Chat {
      * return a compound response to a multiple-sentence request. "Multiple" means one or more.
      *
      * @param request      client's multiple-sentence input
-     * @return
      */
     public String multisentenceRespond(String request) {
 

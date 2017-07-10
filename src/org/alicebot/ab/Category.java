@@ -170,7 +170,6 @@ public class Category {
 
     /**
      * return a string represeting the full pattern path as "{@code input pattern <THAT> that pattern <TOPIC> topic pattern}"
-     * @return
      */
     public String inputThatTopic() {
         return Graphmaster.inputThatTopic(pattern, that, topic);
