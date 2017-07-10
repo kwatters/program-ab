@@ -529,9 +529,10 @@ public class Bot {
         try{
             // Open the file that is the first
             // command line parameter
-            FileInputStream fstream = new FileInputStream(filename);
             // Get the object
-            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+            BufferedReader br;
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8));
+
             String strLine;
             //Read File Line By Line
             while ((strLine = br.readLine()) != null)   {
