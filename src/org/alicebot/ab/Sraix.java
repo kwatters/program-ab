@@ -19,16 +19,16 @@ package org.alicebot.ab;
         Boston, MA  02110-1301, USA.
 */
 
-import org.alicebot.ab.utils.CalendarUtils;
-import org.alicebot.ab.utils.NetworkUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.alicebot.ab.utils.CalendarUtils;
+import org.alicebot.ab.utils.NetworkUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class Sraix {
@@ -38,6 +38,9 @@ public class Sraix {
     public static String custid = "1"; // customer ID number for Pandorabots
 
     public static String sraix(Chat chatSession, String input, String defaultResponse, String hint, String host, String botid, String apiKey, String limit) {
+      if (chatSession.bot.getSraixHandler() != null) {
+        return chatSession.bot.getSraixHandler().sraix(chatSession,  input,  defaultResponse,  hint,  host,  botid,  apiKey,  limit);
+      }
         String response;
         if (!MagicBooleans.enable_network_connection)  response = MagicStrings.sraix_failed;
         else if (host != null && botid != null) {

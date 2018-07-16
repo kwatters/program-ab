@@ -52,6 +52,8 @@ public class Bot {
     public String log_path = bot_path+"/log";
     public String sets_path = bot_path+"/sets";
     public String maps_path = bot_path+"/maps";
+    private SraixHandler sraixHandler = null;
+
     /**
      * Set all directory path variables for this bot
      *
@@ -691,5 +693,14 @@ public void shadowChecker () {
           pattern = pattern+" "+x;
         }
         return pattern.trim();
+    }
+
+    // If this is not null, the sraix patterns will callback to this handler to handle the response.
+    public void setSraixHandler(SraixHandler sraixHandler) {
+      this.sraixHandler = sraixHandler;
+    }
+    
+    public SraixHandler getSraixHandler() {
+      return sraixHandler;
     }
 }
