@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>program-ab</groupId>
   <artifactId>program-ab-kw</artifactId>
-  <version>0.0.7-SNAPSHOT</version>
+  <version>0.0.8</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -19,8 +19,9 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source />
-          <target />
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
     </plugins>
@@ -61,5 +62,11 @@
       <artifactId>commons-logging</artifactId>
       <version>1.1.1</version>
     </dependency>
+	<!-- Binding for System.out  -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-simple</artifactId>
+		<version>1.7.24</version>
+	</dependency>
   </dependencies>
 </project>

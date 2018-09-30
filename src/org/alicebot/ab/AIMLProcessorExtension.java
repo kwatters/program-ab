@@ -26,24 +26,26 @@ import java.util.Set;
 /**
  * The interface needed to implement AIML Extension
  *
- * A class implementing AIMLProcessorExtension should return
- * a Set of tag names and provide a function to recursively evaluate the
- * XML parse tree for each node associated with a new tag.
+ * A class implementing AIMLProcessorExtension should return a Set of tag names
+ * and provide a function to recursively evaluate the XML parse tree for each
+ * node associated with a new tag.
  */
 public interface AIMLProcessorExtension {
-    /**
-     * provide the AIMLProcessor with a list of extension tag names.
-     *
-     * @return      Set of extension tag names
-     */
-   public Set<String> extensionTagSet();
+  /**
+   * provide the AIMLProcessor with a list of extension tag names.
+   *
+   * @return Set of extension tag names
+   */
+  public Set<String> extensionTagSet();
 
-    /**
-     * recursively evaluate AIML from a node corresponding an extension tag
-     *
-     * @param node                current XML parse node
-     * @param ps                  current parse state
-     * @return                    result of evaluating AIML
-     */
-   public String recursEval(Node node, ParseState ps);
+  /**
+   * recursively evaluate AIML from a node corresponding an extension tag
+   *
+   * @param node
+   *          current XML parse node
+   * @param ps
+   *          current parse state
+   * @return result of evaluating AIML
+   */
+  public String recursEval(Node node, ParseState ps);
 }

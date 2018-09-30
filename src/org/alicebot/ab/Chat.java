@@ -2,6 +2,8 @@ package org.alicebot.ab;
 
 import org.alicebot.ab.utils.IOUtils;
 import org.alicebot.ab.utils.JapaneseUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -28,6 +30,7 @@ import java.io.*;
  * Class encapsulating a chat session between a bot and a client
  */
 public class Chat {
+  private static final Logger log = LoggerFactory.getLogger(Chat.class);
     public Bot bot;
     public boolean doWrites;
     public String customerId = MagicStrings.default_Customer_id;
@@ -218,6 +221,7 @@ public class Chat {
             //MagicBooleans.trace("in chat.multisentenceRespond(), normalized: " + normalized);
             String sentences[] = bot.preProcessor.sentenceSplit(normalized);
             History<String> contextThatHistory = new History<String>("contextThat");
+            // History<String> contextThatHistory = responseHistory;
             for (int i = 0; i < sentences.length; i++) {
                 //System.out.println("Human: "+sentences[i]);
                 AIMLProcessor.trace_count = 0;

@@ -1,4 +1,5 @@
 package org.alicebot.ab;
+
 /* Program AB Reference AIML 2.0 implementation
         Copyright (C) 2013 ALICE A.I. Foundation
         Contact: info@alicebot.org
@@ -20,15 +21,15 @@ package org.alicebot.ab;
 */
 import java.util.ArrayList;
 
-
 /**
  * Array of values matching wildcards
  */
 public class Stars extends ArrayList<String> {
-    public String star (int i) {
-        if (i < size())
-        return get(i);
-        else return null;
-    }
+  public String star(int i) {
+    if (i < size())
+      return get(i);
+    else
+      return null;
+  }
 
 }
