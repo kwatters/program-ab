@@ -58,9 +58,9 @@ public class AIMLSet extends HashSet<String> {
   }
 
   public boolean contains(String s) {
-    // if (isExternal) System.out.println("External "+setName+" contains
+    // if (isExternal) log.info("External "+setName+" contains
     // "+s+"?");
-    // else System.out.println("Internal "+setName+" contains "+s+"?");
+    // else log.info("Internal "+setName+" contains "+s+"?");
     if (isExternal && MagicBooleans.enable_external_sets) {
       if (inCache.contains(s))
         return true;
@@ -71,7 +71,7 @@ public class AIMLSet extends HashSet<String> {
         return false;
       String query = MagicStrings.set_member_string + setName.toUpperCase() + " " + s;
       String response = Sraix.sraix(null, query, "false", null, host, botid, null, "0");
-      // System.out.println("External "+setName+" contains "+s+"? "+response);
+      // log.info("External "+setName+" contains "+s+"? "+response);
       if (response.equals("true")) {
         inCache.add(s);
         return true;
@@ -83,14 +83,14 @@ public class AIMLSet extends HashSet<String> {
       Pattern numberPattern = Pattern.compile("[0-9]+");
       Matcher numberMatcher = numberPattern.matcher(s);
       Boolean isanumber = numberMatcher.matches();
-      // System.out.println("AIMLSet isanumber '"+s+"' "+isanumber);
+      // log.info("AIMLSet isanumber '"+s+"' "+isanumber);
       return isanumber;
     } else
       return super.contains(s);
   }
 
   public void writeAIMLSet() {
-    System.out.println("Writing AIML Set " + setName);
+    log.info("Writing AIML Set " + setName);
     try {
       // Create file
       FileWriter fstream = new FileWriter(bot.sets_path + "/" + setName + ".txt");
@@ -124,7 +124,7 @@ public class AIMLSet extends HashSet<String> {
             botid = splitLine[2];
             maxLength = Integer.parseInt(splitLine[3]);
             isExternal = true;
-            System.out.println("Created external set at " + host + " " + botid);
+            log.info("Created external set at " + host + " " + botid);
           }
         } else {
           strLine = strLine.toUpperCase().trim();
@@ -132,7 +132,7 @@ public class AIMLSet extends HashSet<String> {
           int length = splitLine.length;
           if (length > maxLength)
             maxLength = length;
-          // System.out.println("readAIMLSetFromInputStream "+strLine);
+          // log.info("readAIMLSetFromInputStream "+strLine);
           add(strLine.trim());
         }
         /*

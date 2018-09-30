@@ -29,7 +29,7 @@ public class Contact {
     String patternString = " (" + contactName.toUpperCase() + ") ";
     while (patternString.contains(" "))
       patternString = patternString.replace(" ", "(.*)");
-    // System.out.println("Pattern='"+patternString+"'");
+    // log.info("Pattern='"+patternString+"'");
     Pattern pattern = Pattern.compile(patternString);
     Set<String> keys = nameIdMap.keySet();
     String result = "";
@@ -50,7 +50,7 @@ public class Contact {
     String patternString = " " + contactName.toUpperCase() + " ";
     while (patternString.contains(" "))
       patternString = patternString.replace(" ", ".*");
-    // System.out.println("Pattern='"+patternString+"'");
+    // log.info("Pattern='"+patternString+"'");
     Pattern pattern = Pattern.compile(patternString);
     Set<String> keys = nameIdMap.keySet();
     String result = "unknown";
@@ -124,7 +124,7 @@ public class Contact {
   public void addName(String name) {
     displayName = name;
     nameIdMap.put(displayName.toUpperCase(), contactId);
-    // System.out.println(nameIdMap.toString());
+    // log.info(nameIdMap.toString());
   }
 
   public void addBirthday(String birthday) {
