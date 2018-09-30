@@ -12,7 +12,13 @@ package org.alicebot.ab;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class EnglishNumberToWords {
+  
+  private static final Logger log = LoggerFactory.getLogger(EnglishNumberToWords.class);
+  
   private static final String[] tensNames = { "", " ten", " twenty", " thirty", " forty", " fifty", " sixty", " seventy", " eighty", " ninety" };
 
   private static final String[] numNames = { "", " one", " two", " three", " four", " five", " six", " seven", " eight", " nine", " ten", " eleven", " twelve", " thirteen",
@@ -118,7 +124,7 @@ public class EnglishNumberToWords {
       numberName.add(name);
       name2number.put(name, number);
       if (i == 1000)
-        System.out.println("Name2number(" + name + ")=" + number);
+        log.info("Name2number(" + name + ")=" + number);
 
     }
 
@@ -128,25 +134,25 @@ public class EnglishNumberToWords {
   }
 
   public static void main(String[] args) {
-    System.out.println("*** " + EnglishNumberToWords.convert(0));
-    System.out.println("*** " + EnglishNumberToWords.convert(1));
-    System.out.println("*** " + EnglishNumberToWords.convert(16));
-    System.out.println("*** " + EnglishNumberToWords.convert(100));
-    System.out.println("*** " + EnglishNumberToWords.convert(118));
-    System.out.println("*** " + EnglishNumberToWords.convert(200));
-    System.out.println("*** " + EnglishNumberToWords.convert(219));
-    System.out.println("*** " + EnglishNumberToWords.convert(800));
-    System.out.println("*** " + EnglishNumberToWords.convert(801));
-    System.out.println("*** " + EnglishNumberToWords.convert(1316));
-    System.out.println("*** " + EnglishNumberToWords.convert(1000000));
-    System.out.println("*** " + EnglishNumberToWords.convert(2000000));
-    System.out.println("*** " + EnglishNumberToWords.convert(3000200));
-    System.out.println("*** " + EnglishNumberToWords.convert(700000));
-    System.out.println("*** " + EnglishNumberToWords.convert(9000000));
-    System.out.println("*** " + EnglishNumberToWords.convert(9001000));
-    System.out.println("*** " + EnglishNumberToWords.convert(123456789));
-    System.out.println("*** " + EnglishNumberToWords.convert(2147483647));
-    System.out.println("*** " + EnglishNumberToWords.convert(3000000010L));
+    log.info("*** " + EnglishNumberToWords.convert(0));
+    log.info("*** " + EnglishNumberToWords.convert(1));
+    log.info("*** " + EnglishNumberToWords.convert(16));
+    log.info("*** " + EnglishNumberToWords.convert(100));
+    log.info("*** " + EnglishNumberToWords.convert(118));
+    log.info("*** " + EnglishNumberToWords.convert(200));
+    log.info("*** " + EnglishNumberToWords.convert(219));
+    log.info("*** " + EnglishNumberToWords.convert(800));
+    log.info("*** " + EnglishNumberToWords.convert(801));
+    log.info("*** " + EnglishNumberToWords.convert(1316));
+    log.info("*** " + EnglishNumberToWords.convert(1000000));
+    log.info("*** " + EnglishNumberToWords.convert(2000000));
+    log.info("*** " + EnglishNumberToWords.convert(3000200));
+    log.info("*** " + EnglishNumberToWords.convert(700000));
+    log.info("*** " + EnglishNumberToWords.convert(9000000));
+    log.info("*** " + EnglishNumberToWords.convert(9001000));
+    log.info("*** " + EnglishNumberToWords.convert(123456789));
+    log.info("*** " + EnglishNumberToWords.convert(2147483647));
+    log.info("*** " + EnglishNumberToWords.convert(3000000010L));
 
     /*
      *** zero one sixteen one hundred one hundred eighteen two hundred two hundred
