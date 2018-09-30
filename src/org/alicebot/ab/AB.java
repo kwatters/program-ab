@@ -197,7 +197,7 @@ public class AB {
       // Close the input stream
       br.close();
     } catch (Exception e) {// Catch exception if any
-      System.err.println("Error: " + e.getMessage());
+      log.warn("Error: " + e.getMessage());
     }
   }
 
@@ -325,7 +325,7 @@ public class AB {
       // Close the input stream
       br.close();
     } catch (Exception e) {// Catch exception if any
-      System.err.println("Error: " + e.getMessage());
+      log.warn("Error: " + e.getMessage());
       e.printStackTrace();
     }
   }

@@ -150,7 +150,7 @@ public class AIMLSet extends HashSet<String> {
   public int readAIMLSet(Bot bot) {
     int cnt = 0;
     if (MagicBooleans.trace_mode)
-      System.out.println("Reading AIML Set " + bot.sets_path + "/" + setName + ".txt");
+      log.info("Reading AIML Set " + bot.sets_path + "/" + setName + ".txt");
     try {
       // Open the file that is the first
       // command line parameter
@@ -161,9 +161,9 @@ public class AIMLSet extends HashSet<String> {
         cnt = readAIMLSetFromInputStream(fstream, bot);
         fstream.close();
       } else
-        System.out.println(bot.sets_path + "/" + setName + ".txt not found");
+        log.info(bot.sets_path + "/" + setName + ".txt not found");
     } catch (Exception e) {// Catch exception if any
-      System.err.println("Error: " + e.getMessage());
+      log.warn("Error: " + e.getMessage());
     }
     return cnt;
 

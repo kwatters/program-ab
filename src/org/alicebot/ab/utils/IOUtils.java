@@ -33,7 +33,7 @@ public class IOUtils {
         writer = new BufferedWriter(new FileWriter(filePath, true));
       }
     } catch (IOException e) {
-      System.err.println("error: " + e);
+      log.warn("error: " + e);
     }
   }
 
@@ -42,7 +42,7 @@ public class IOUtils {
     try {
       result = reader.readLine();
     } catch (IOException e) {
-      System.err.println("error: " + e);
+      log.warn("error: " + e);
     }
     return result;
   }
@@ -52,7 +52,7 @@ public class IOUtils {
       writer.write(line);
       writer.newLine();
     } catch (IOException e) {
-      System.err.println("error: " + e);
+      log.warn("error: " + e);
     }
   }
 
@@ -63,7 +63,7 @@ public class IOUtils {
       if (writer != null)
         writer.close();
     } catch (IOException e) {
-      System.err.println("error: " + e);
+      log.warn("error: " + e);
     }
 
   }

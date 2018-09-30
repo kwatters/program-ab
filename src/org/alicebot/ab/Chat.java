@@ -75,7 +75,7 @@ public class Chat {
         addTriples();
         predicates.put("topic", MagicStrings.default_topic);
         predicates.put("jsenabled", MagicStrings.js_enabled);
-        if (MagicBooleans.trace_mode) System.out.println("Chat Session Created for bot "+bot.name);
+        if (MagicBooleans.trace_mode) log.info("Chat Session Created for bot "+bot.name);
     }
 
     /**
@@ -94,7 +94,7 @@ public class Chat {
 
     int addTriples() {
         int tripleCnt = 0;
-        if (MagicBooleans.trace_mode) System.out.println("Loading Triples from "+bot.config_path+"/triples.txt");
+        if (MagicBooleans.trace_mode) log.info("Loading Triples from "+bot.config_path+"/triples.txt");
         File f = new File(bot.config_path+"/triples.txt");
         if (f.exists())
         try {
@@ -117,7 +117,7 @@ public class Chat {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        if (MagicBooleans.trace_mode) System.out.println("Loaded "+tripleCnt+" triples");
+        if (MagicBooleans.trace_mode) log.info("Loaded "+tripleCnt+" triples");
         return tripleCnt;
     }
 
@@ -133,15 +133,15 @@ public class Chat {
             String request="SET PREDICATES";
             String response = multisentenceRespond(request);
             while (!request.equals("quit")) {
-                System.out.print("Human: ");
-				request = IOUtils.readInputTextLine();
-                response = multisentenceRespond(request);
-                System.out.println("Robot: "+response);
-                bw.write("Human: "+request);
-                bw.newLine();
-                bw.write("Robot: "+response);
-                bw.newLine();
-                bw.flush();
+              System.out.print("Human: ");
+              request = IOUtils.readInputTextLine();
+              response = multisentenceRespond(request);
+              System.out.println("Robot: "+response);
+              bw.write("Human: "+request);
+              bw.newLine();
+              bw.write("Robot: "+response);
+              bw.newLine();
+              bw.flush();
             }
             bw.close();
         } catch (Exception ex) {
@@ -163,7 +163,7 @@ public class Chat {
         boolean repetition = true;
         //inputHistory.printHistory();
         for (int i = 0; i < MagicNumbers.repetition_count; i++) {
-            //System.out.println(request.toUpperCase()+"=="+inputHistory.get(i)+"? "+request.toUpperCase().equals(inputHistory.get(i)));
+            //log.info(request.toUpperCase()+"=="+inputHistory.get(i)+"? "+request.toUpperCase().equals(inputHistory.get(i)));
             if (inputHistory.get(i) == null || !input.toUpperCase().equals(inputHistory.get(i).toUpperCase()))
                 repetition = false;
         }
@@ -181,7 +181,7 @@ public class Chat {
         String sentences[] = bot.preProcessor.sentenceSplit(normResponse);
         for (int i = 0; i < sentences.length; i++) {
           that = sentences[i];
-          //System.out.println("That "+i+" '"+that+"'");
+          //log.info("That "+i+" '"+that+"'");
           if (that.trim().equals("")) that = MagicStrings.default_that;
           contextThatHistory.add(that);
         }
@@ -223,11 +223,11 @@ public class Chat {
             History<String> contextThatHistory = new History<String>("contextThat");
             // History<String> contextThatHistory = responseHistory;
             for (int i = 0; i < sentences.length; i++) {
-                //System.out.println("Human: "+sentences[i]);
+                //log.info("Human: "+sentences[i]);
                 AIMLProcessor.trace_count = 0;
                 String reply = respond(sentences[i], contextThatHistory);
                 response += "  "+reply;
-                //System.out.println("Robot: "+reply);
+                //log.info("Robot: "+reply);
             }
             requestHistory.add(request);
             responseHistory.add(response);

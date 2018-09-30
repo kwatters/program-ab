@@ -98,7 +98,7 @@ public class Utilities {
         fstream.close();
       }
     } catch (Exception e) {// Catch exception if any
-      System.err.println("Error: " + e.getMessage());
+      log.warn("Error: " + e.getMessage());
     }
     // log.info("getFile: "+contents);
     return contents;
@@ -142,7 +142,7 @@ public class Utilities {
       copyright = copyright.replace("[botmaster]", bot.properties.get("botmaster"));
       copyright = copyright.replace("[organization]", bot.properties.get("organization"));
     } catch (Exception e) {// Catch exception if any
-      System.err.println("Error: " + e.getMessage());
+      log.warn("Error: " + e.getMessage());
     }
     copyright += "<!--  -->\n";
     // log.info("Copyright: "+copyright);

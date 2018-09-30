@@ -63,7 +63,7 @@ public class DomUtils {
       t.setOutputProperty(OutputKeys.INDENT, "no");
       t.transform(new DOMSource(node), new StreamResult(sw));
     } catch (TransformerException te) {
-      System.out.println("nodeToString Transformer Exception");
+      log.warn("nodeToString Transformer Exception {}", te);
     }
     String result = sw.toString();
     // MagicBooleans.trace("nodeToString() returning: " + result);

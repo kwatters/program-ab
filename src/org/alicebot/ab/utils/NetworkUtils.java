@@ -34,7 +34,7 @@ public class NetworkUtils {
             int p = ipAddress.indexOf("%");
             if (p > 0)
               ipAddress = ipAddress.substring(0, p);
-            // if (MagicBooleans.trace_mode) System.out.println("-->
+            // if (MagicBooleans.trace_mode) log.info("-->
             // localIPAddress = "+ipAddress);
             return ipAddress;
           }
@@ -85,7 +85,7 @@ public class NetworkUtils {
    * // Execute the request HttpResponse response = httpclient.execute(httpget);
    * 
    * // Examine the response status
-   * System.out.println(response.getStatusLine());
+   * log.info(response.getStatusLine());
    * 
    * // Get hold of the response entity HttpEntity entity =
    * response.getEntity();
@@ -98,7 +98,7 @@ public class NetworkUtils {
    * inb.readLine()) != null) { sb.append(line).append(NL); } inb.close();
    * result = sb.toString(); BufferedReader reader = new BufferedReader( new
    * InputStreamReader(is)); // do something useful with the response
-   * System.out.println(reader.readLine());
+   * log.info(reader.readLine());
    * 
    * } catch (IOException ex) {
    * 
@@ -140,7 +140,7 @@ public class NetworkUtils {
   }
 
   public static String spec(String host, String botid, String custid, String input) {
-    // System.out.println("--> custid = "+custid);
+    // log.info("--> custid = "+custid);
     String spec = "";
     try {
       if (custid.equals("0")) // get custid on first transaction with
@@ -152,7 +152,7 @@ public class NetworkUtils {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
-    System.out.println(spec);
+    log.info(spec);
     return spec;
   }
 
