@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Tuple extends HashMap<String, String> {
-  
+
   private static final Logger log = LoggerFactory.getLogger(Tuple.class);
-  
+
   public static int index = 0;
   public static HashMap<String, Tuple> tupleMap = new HashMap<String, Tuple>();
   public HashSet<String> visibleVars = new HashSet<String>();
@@ -21,9 +21,9 @@ public class Tuple extends HashMap<String, String> {
     // log.info("Calling equals");
     // if (this == o) return true;
     /*
-     * if (o == null || getClass() != o.getClass()) {
-     * log.info("unequal 1"); return false; } if (!super.equals(o)) {
-     * log.info("unequal 2"); return false; }
+     * if (o == null || getClass() != o.getClass()) { log.info("unequal 1");
+     * return false; } if (!super.equals(o)) { log.info("unequal 2"); return
+     * false; }
      */
     Tuple tuple = (Tuple) o;
 

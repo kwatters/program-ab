@@ -29,7 +29,7 @@ import java.util.HashSet;
 public class Utilities {
 
   private static final Logger log = LoggerFactory.getLogger(Utilities.class);
-  
+
   /**
    * Excel sometimes adds mysterious formatting to CSV files. This function
    * tries to clean it up.

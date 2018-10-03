@@ -12,9 +12,9 @@ import java.io.InputStreamReader;
  * Created by User on 5/13/2014.
  */
 public class TestAB {
-  
+
   private static final Logger log = LoggerFactory.getLogger(TestAB.class);
-  
+
   public static String sample_file = "sample.random.txt";
 
   public static void testChat(Bot bot, boolean doWrites, boolean traceMode) {

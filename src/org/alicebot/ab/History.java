@@ -29,9 +29,9 @@ import org.slf4j.LoggerFactory;
  *          type of history object
  */
 public class History<T> {
-  
+
   private static final Logger log = LoggerFactory.getLogger(History.class);
-  
+
   private Object[] history;
   private String name;
 
@@ -107,7 +107,7 @@ public class History<T> {
     int i;
     for (i = 0; get(i) != null; i++) {
       log.info(name + "History " + (i + 1) + " = " + get(i));
-      log.info(""+String.valueOf(get(i).getClass()).contains("History"));
+      log.info("" + String.valueOf(get(i).getClass()).contains("History"));
       if (String.valueOf(get(i).getClass()).contains("History"))
         ((History) get(i)).printHistory();
     }

@@ -28,8 +28,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NodemapperOperator {
-  
+
   private static final Logger log = LoggerFactory.getLogger(NodemapperOperator.class);
+
   /**
    * number of branches from node
    *

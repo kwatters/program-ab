@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public class IntervalUtils {
 
   private static final Logger log = LoggerFactory.getLogger(IntervalUtils.class);
-  
+
   public static void test() {
     String date1 = "23:59:59.00";
     String date2 = "12:00:00.00";

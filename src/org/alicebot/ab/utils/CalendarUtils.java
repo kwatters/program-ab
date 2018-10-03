@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class CalendarUtils {
-  
+
   private static final Logger log = LoggerFactory.getLogger(CalendarUtils.class);
 
   public static String formatTime(String formatString, long msSinceEpoch) {

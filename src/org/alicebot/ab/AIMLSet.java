@@ -31,9 +31,9 @@ import org.slf4j.LoggerFactory;
  * implements AIML Sets
  */
 public class AIMLSet extends HashSet<String> {
-  
+
   private static final Logger log = LoggerFactory.getLogger(AIMLSet.class);
-  
+
   public String setName;
   int maxLength = 1; // there are no empty sets
   String host; // for external sets

@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
  * contactaction.aiml
  */
 public class Contact {
-  
+
   private static final Logger log = LoggerFactory.getLogger(Contact.class);
-  
+
   public static int contactCount = 0;
   public static HashMap<String, Contact> idContactMap = new HashMap<String, Contact>();
   public static HashMap<String, String> nameIdMap = new HashMap<String, String>();

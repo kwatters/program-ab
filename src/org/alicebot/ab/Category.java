@@ -28,9 +28,9 @@ import org.slf4j.LoggerFactory;
  * structure representing an AIML category and operations on Category
  */
 public class Category {
-  
+
   private static final Logger log = LoggerFactory.getLogger(Category.class);
-      
+
   private String pattern;
   private String that;
   private String topic;

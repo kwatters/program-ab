@@ -22,7 +22,7 @@ import java.util.Enumeration;
 public class NetworkUtils {
 
   private static final Logger log = LoggerFactory.getLogger(NetworkUtils.class);
-  
+
   public static String localIPAddress() {
     try {
       for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
@@ -84,8 +84,7 @@ public class NetworkUtils {
    * 
    * // Execute the request HttpResponse response = httpclient.execute(httpget);
    * 
-   * // Examine the response status
-   * log.info(response.getStatusLine());
+   * // Examine the response status log.info(response.getStatusLine());
    * 
    * // Get hold of the response entity HttpEntity entity =
    * response.getEntity();

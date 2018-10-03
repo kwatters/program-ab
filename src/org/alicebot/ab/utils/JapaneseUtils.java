@@ -12,7 +12,7 @@ import org.w3c.dom.NodeList;
 public class JapaneseUtils {
 
   private static final Logger log = LoggerFactory.getLogger(JapaneseUtils.class);
-  
+
   /**
    * Tokenize a fragment of the input that contains only text
    *

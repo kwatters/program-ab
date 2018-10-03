@@ -31,9 +31,9 @@ import java.util.Set;
  * some extension tags that are defined for mobile devices.
  */
 public class PCAIMLProcessorExtension implements AIMLProcessorExtension {
-  
+
   private static final Logger log = LoggerFactory.getLogger(PCAIMLProcessorExtension.class);
-  
+
   public Set<String> extensionTagNames = Utilities.stringSet("contactid", "multipleids", "displayname", "dialnumber", "emailaddress", "contactbirthday", "addinfo");
 
   public Set<String> extensionTagSet() {

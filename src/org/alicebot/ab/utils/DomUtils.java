@@ -21,7 +21,7 @@ import java.io.StringWriter;
 public class DomUtils {
 
   private static final Logger log = LoggerFactory.getLogger(DomUtils.class);
-      
+
   public static Node parseFile(String fileName) throws Exception {
     File file = new File(fileName);
 

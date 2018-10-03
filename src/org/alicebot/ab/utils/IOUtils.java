@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public class IOUtils {
 
   private static final Logger log = LoggerFactory.getLogger(IOUtils.class);
-  
+
   BufferedReader reader;
   BufferedWriter writer;
 

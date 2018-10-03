@@ -42,7 +42,7 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
  * https://docs.google.com/document/d/1wNT25hJRyupcG51aO89UcQEiG-HkXRXusukADpFnDs4/pub
  */
 public class AIMLProcessor {
-  
+
   private static final Logger log = LoggerFactory.getLogger(AIMLProcessor.class);
   static private boolean DEBUG = false;
 
@@ -64,7 +64,7 @@ public class AIMLProcessor {
     String pattern, that, template;
 
     // TODO: this isn't thread safe, but it's expensive to re-create each time!
-    
+
     NodeList children = n.getChildNodes();
     pattern = "*";
     that = "*";
@@ -76,15 +76,15 @@ public class AIMLProcessor {
       // log.info("mName: " + mName);
       if (mName.equals("#text")) {
         /* skip */} else if (mName.equals("pattern"))
-        pattern = DomUtils.nodeToString(m,t);
+        pattern = DomUtils.nodeToString(m, t);
       else if (mName.equals("that"))
-        that = DomUtils.nodeToString(m,t);
+        that = DomUtils.nodeToString(m, t);
       else if (mName.equals("topic"))
-        topic = DomUtils.nodeToString(m,t);
+        topic = DomUtils.nodeToString(m, t);
       else if (mName.equals("template"))
-        template = DomUtils.nodeToString(m,t);
+        template = DomUtils.nodeToString(m, t);
       else
-        log.info("categoryProcessor: unexpected " + mName + " in " + DomUtils.nodeToString(m,t));
+        log.info("categoryProcessor: unexpected " + mName + " in " + DomUtils.nodeToString(m, t));
     }
     // log.info("categoryProcessor: pattern="+pattern);
     pattern = trimTag(pattern, "pattern");
@@ -142,7 +142,7 @@ public class AIMLProcessor {
    */
   public static ArrayList<Category> AIMLToCategories(String directory, String aimlFile) {
     try {
-      
+
       // TODO: this transformer object is NOT thread safe!
       Transformer t = null;
       try {
@@ -156,7 +156,6 @@ public class AIMLProcessor {
         return null;
       }
 
-      
       ArrayList categories = new ArrayList<Category>();
       Node root = DomUtils.parseFile(directory + "/" + aimlFile); // <aiml> tag
       String language = MagicStrings.default_language;

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class AB {
-  
+
   Logger log = LoggerFactory.getLogger(AB.class);
   /**
    * Experimental class that analyzes log data and suggests new AIML patterns.
@@ -316,7 +316,7 @@ public class AB {
               }
               count += 1;
               if (count % 10000 == 0)
-                log.info(""+count);
+                log.info("" + count);
             }
           }
         }

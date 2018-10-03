@@ -33,9 +33,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class Graphmaster {
-  
+
   Logger log = LoggerFactory.getLogger(Graphmaster.class);
-  
+
   static private boolean DEBUG = false;
 
   public Bot bot;
@@ -113,11 +113,10 @@ public class Graphmaster {
     /*
      * if (inputThatTopic.contains("<B")) { Matcher matcher =
      * botPropPattern.matcher(inputThatTopic); while (matcher.find()) { String
-     * propname = matcher.group(1).toLowerCase();
-     * //log.info(matcher.group(1)); String property =
-     * bot.properties.get(propname).toUpperCase(); inputThatTopic =
-     * inputThatTopic.replaceFirst("(?i)"+botPropRegex, property);
-     * //log.info("addCategory: Replaced pattern with: "
+     * propname = matcher.group(1).toLowerCase(); //log.info(matcher.group(1));
+     * String property = bot.properties.get(propname).toUpperCase();
+     * inputThatTopic = inputThatTopic.replaceFirst("(?i)"+botPropRegex,
+     * property); //log.info("addCategory: Replaced pattern with: "
      * +inputThatTopic); } }
      */
     //
@@ -670,33 +669,33 @@ public class Graphmaster {
    * final Nodemapper setMatch(Path path, Nodemapper node, String input, String
    * starState, int starIndex, String[] inputStars, String[] thatStars, String[]
    * topicStars, String matchTrace) { if (DEBUG)
-   * log.info("Graphmaster.setMatch(path: " + path + ", node: " + node
-   * + ", input: " + input + ", starState: " + starState + ", starIndex: " +
+   * log.info("Graphmaster.setMatch(path: " + path + ", node: " + node +
+   * ", input: " + input + ", starState: " + starState + ", starIndex: " +
    * starIndex + ", inputStars, thatStars, topicStars, matchTrace: " +
    * matchTrace + ", )"); if (node.sets == null || path.word.equals("<THAT>") ||
    * path.word.equals("<TOPIC>")) return null; if (DEBUG)
-   * log.info("in Graphmaster.setMatch, setMatch sets ="+node.sets);
-   * for (String setName : node.sets) { if (DEBUG)
-   * log.info("in Graphmaster.setMatch, setMatch trying type "+setName
-   * ); Nodemapper nextNode = NodemapperOperator.get(node,
+   * log.info("in Graphmaster.setMatch, setMatch sets ="+node.sets); for (String
+   * setName : node.sets) { if (DEBUG)
+   * log.info("in Graphmaster.setMatch, setMatch trying type "+setName );
+   * Nodemapper nextNode = NodemapperOperator.get(node,
    * "<SET>"+setName.toUpperCase()+"</SET>"); AIMLSet aimlSet =
-   * bot.setMap.get(setName); //log.info(aimlSet.setName + "="+
-   * aimlSet); Nodemapper matchedNode; String currentWord = path.word; String
-   * starWords = currentWord+" "; int length = 1; matchTrace +=
+   * bot.setMap.get(setName); //log.info(aimlSet.setName + "="+ aimlSet);
+   * Nodemapper matchedNode; String currentWord = path.word; String starWords =
+   * currentWord+" "; int length = 1; matchTrace +=
    * "[<set>"+setName+"</set>,"+path.word+"]"; if (DEBUG)
    * log.info("in Graphmaster.setMatch, setMatch starWords =\""
    * +starWords+"\""); for (Path qath = path.next; qath != null &&
    * !currentWord.equals("<THAT>") && !currentWord.equals("<TOPIC>") && length
    * <= aimlSet.maxLength; qath = qath.next) { if (DEBUG)
-   * log.info("in Graphmaster.setMatch, qath.word = "+qath.word);
-   * String phrase = bot.preProcessor.normalize(starWords.trim()).toUpperCase();
-   * if (DEBUG) log.info("in Graphmaster.setMatch, setMatch trying \""
+   * log.info("in Graphmaster.setMatch, qath.word = "+qath.word); String phrase
+   * = bot.preProcessor.normalize(starWords.trim()).toUpperCase(); if (DEBUG)
+   * log.info("in Graphmaster.setMatch, setMatch trying \""
    * +phrase+"\" in "+setName); if (aimlSet.contains(phrase) && (matchedNode =
    * match(qath, nextNode, input, starState, starIndex + 1, inputStars,
    * thatStars, topicStars, matchTrace)) != null) { setStars(starWords,
    * starIndex, starState, inputStars, thatStars, topicStars); if (DEBUG)
-   * log.info("in Graphmaster.setMatch, setMatch found "+phrase+" in "
-   * + setName); return matchedNode; } // else if (qath.word.equals("<THAT>") ||
+   * log.info("in Graphmaster.setMatch, setMatch found "+phrase+" in " +
+   * setName); return matchedNode; } // else if (qath.word.equals("<THAT>") ||
    * qath.word.equals("<TOPIC>")) return null; else { length = length + 1;
    * currentWord = qath.word; starWords += currentWord + " "; } } } fail("set",
    * matchTrace); return null; }

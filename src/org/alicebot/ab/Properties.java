@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 
 public class Properties extends HashMap<String, String> {
   private static final Logger log = LoggerFactory.getLogger(Properties.class);
+
   /**
    * get the value of a bot property.
    *

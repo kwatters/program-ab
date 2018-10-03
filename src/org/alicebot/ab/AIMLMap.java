@@ -33,9 +33,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class AIMLMap extends HashMap<String, String> {
-  
+
   private static final Logger log = LoggerFactory.getLogger(AIMLMap.class);
-  
+
   public String mapName;
   String host; // for external maps
   String botid; // for external maps
