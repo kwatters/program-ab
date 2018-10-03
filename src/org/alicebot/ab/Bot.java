@@ -58,7 +58,8 @@ public class Bot {
   public String sets_path = bot_path + "/sets";
   public String maps_path = bot_path + "/maps";
   private SraixHandler sraixHandler = null;
-
+  public Locale locale = MagicBooleans.defaultLocale;
+  
   /**
    * Set all directory path variables for this bot
    *
@@ -114,9 +115,13 @@ public class Bot {
    * @param path
    */
   public Bot(String name, String path) {
-    this(name, path, "auto");
+    this(name, path, "auto", MagicBooleans.defaultLocale);
   }
 
+  public Bot(String name, String path, Locale locale) {
+    this(name, path, "auto", locale);
+  }
+  
   /**
    * Constructor
    *
@@ -127,10 +132,11 @@ public class Bot {
    * @param action
    *          Program AB action
    */
-  public Bot(String name, String path, String action) {
+  public Bot(String name, String path, String action, Locale locale) {
     int cnt = 0;
     int elementCnt = 0;
     this.name = name;
+    this.locale = locale;
     setAllPaths(path, name);
     this.brain = new Graphmaster(this);
 
@@ -190,7 +196,6 @@ public class Bot {
     brain.addCategory(b);
     brain.nodeStats();
     learnfGraph.nodeStats();
-
   }
 
   HashSet<String> getPronouns() {
@@ -265,7 +270,7 @@ public class Bot {
               if (MagicBooleans.trace_mode)
                 log.info(file);
               try {
-                ArrayList<Category> moreCategories = AIMLProcessor.AIMLToCategories(aiml_path, file);
+                ArrayList<Category> moreCategories = AIMLProcessor.AIMLToCategories(aiml_path, file, locale);
                 addMoreCategories(file, moreCategories);
                 cnt += moreCategories.size();
               } catch (Exception iex) {

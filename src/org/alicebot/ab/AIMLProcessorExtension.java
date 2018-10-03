@@ -21,6 +21,7 @@ package org.alicebot.ab;
 
 import org.w3c.dom.Node;
 
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -47,5 +48,5 @@ public interface AIMLProcessorExtension {
    *          current parse state
    * @return result of evaluating AIML
    */
-  public String recursEval(Node node, ParseState ps);
+  public String recursEval(Node node, ParseState ps, Locale locale);
 }

@@ -19,6 +19,8 @@ package org.alicebot.ab;
         Boston, MA  02110-1301, USA.
 */
 
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,13 +32,15 @@ public class MagicBooleans {
   public static boolean trace_mode = true;
   public static boolean enable_external_sets = true;
   public static boolean enable_external_maps = true;
-  public static boolean jp_tokenize = false;
+  // public static boolean jp_tokenize = false;
   public static boolean fix_excel_csv = true;
   public static boolean enable_network_connection = true;
   public static boolean cache_sraix = false;
   public static boolean qa_test_mode = false;
   public static boolean make_verbs_sets_maps = false;
   public static boolean disable_aimlif = true;
+  // TODO: I know this isn't a boolean
+  public static Locale defaultLocale = new Locale("en");
 
   public static void trace(String traceString) {
     if (trace_mode) {

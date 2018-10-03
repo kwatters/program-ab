@@ -85,7 +85,7 @@ public class AIMLMap extends HashMap<String, String> {
     } else if (isExternal && MagicBooleans.enable_external_sets) {
       // String[] split = key.split(" ");
       String query = mapName.toUpperCase() + " " + key;
-      String response = Sraix.sraix(null, query, MagicStrings.default_map, null, host, botid, null, "0");
+      String response = new Sraix().sraix(null, query, MagicStrings.default_map, null, host, botid, null, "0", bot.locale);
       log.info("External " + mapName + "(" + key + ")=" + response);
       value = response;
     } else

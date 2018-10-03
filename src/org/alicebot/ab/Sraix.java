@@ -22,6 +22,7 @@ package org.alicebot.ab;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +33,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Sraix {
+public class Sraix implements SraixHandler {
 
   private static final Logger log = LoggerFactory.getLogger(Sraix.class);
 
@@ -40,9 +41,9 @@ public class Sraix {
 
   public static String custid = "1"; // customer ID number for Pandorabots
 
-  public static String sraix(Chat chatSession, String input, String defaultResponse, String hint, String host, String botid, String apiKey, String limit) {
+  public String sraix(Chat chatSession, String input, String defaultResponse, String hint, String host, String botid, String apiKey, String limit, Locale locale) {
     if (chatSession.bot.getSraixHandler() != null) {
-      return chatSession.bot.getSraixHandler().sraix(chatSession, input, defaultResponse, hint, host, botid, apiKey, limit);
+      return chatSession.bot.getSraixHandler().sraix(chatSession, input, defaultResponse, hint, host, botid, apiKey, limit, locale);
     }
     String response;
     if (!MagicBooleans.enable_network_connection)
@@ -50,11 +51,11 @@ public class Sraix {
     else if (host != null && botid != null) {
       response = sraixPandorabots(input, chatSession, host, botid);
     } else
-      response = sraixPannous(input, hint, chatSession);
+      response = sraixPannous(input, hint, chatSession, locale);
     log.info("Sraix: response = " + response + " defaultResponse = " + defaultResponse);
     if (response.equals(MagicStrings.sraix_failed)) {
       if (chatSession != null && defaultResponse == null)
-        response = AIMLProcessor.respond(MagicStrings.sraix_failed, "nothing", "nothing", chatSession);
+        response = AIMLProcessor.respond(MagicStrings.sraix_failed, "nothing", "nothing", chatSession, locale);
       else if (defaultResponse != null)
         response = defaultResponse;
     }
@@ -141,7 +142,7 @@ public class Sraix {
     return botResponse;
   }
 
-  public static String sraixPannous(String input, String hint, Chat chatSession) {
+  public static String sraixPannous(String input, String hint, Chat chatSession, Locale locale) {
     try {
       String rawInput = input;
       if (hint == null)
@@ -261,7 +262,7 @@ public class Sraix {
         if (hint.equals(MagicStrings.sraix_event_hint) && !text.startsWith("<year>"))
           return MagicStrings.sraix_failed;
         else if (text.equals(MagicStrings.sraix_failed))
-          return AIMLProcessor.respond(MagicStrings.sraix_failed, "nothing", "nothing", chatSession);
+          return AIMLProcessor.respond(MagicStrings.sraix_failed, "nothing", "nothing", chatSession, locale);
         else {
           text = text.replace("&#39;", "'");
           text = text.replace("&apos;", "'");

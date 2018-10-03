@@ -2,10 +2,12 @@ package org.alicebot.ab;
 
 import org.alicebot.ab.utils.IOUtils;
 import org.alicebot.ab.utils.JapaneseUtils;
+import org.alicebot.ab.utils.LanguageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.util.Locale;
 
 /* Program AB Reference AIML 2.0 implementation
         Copyright (C) 2013 ALICE A.I. Foundation
@@ -172,7 +174,7 @@ public class Chat {
    *          history of "that" values for this request/response interaction
    * @return bot's reply
    */
-  String respond(String input, String that, String topic, History contextThatHistory) {
+  String respond(String input, String that, String topic, History contextThatHistory, Locale locale) {
     // MagicBooleans.trace("chat.respond(input: " + input + ", that: " + that +
     // ", topic: " + topic + ", contextThatHistory: " + contextThatHistory +
     // ")");
@@ -193,12 +195,11 @@ public class Chat {
 
     String response;
 
-    response = AIMLProcessor.respond(input, that, topic, this);
+    response = AIMLProcessor.respond(input, that, topic, this, locale);
     // MagicBooleans.trace("in chat.respond(), response: " + response);
     String normResponse = bot.preProcessor.normalize(response);
     // MagicBooleans.trace("in chat.respond(), normResponse: " + normResponse);
-    if (MagicBooleans.jp_tokenize)
-      normResponse = JapaneseUtils.tokenizeSentence(normResponse);
+    normResponse = LanguageUtils.tokenizeSentence(normResponse, bot.locale);
     String sentences[] = bot.preProcessor.sentenceSplit(normResponse);
     for (int i = 0; i < sentences.length; i++) {
       that = sentences[i];
@@ -222,14 +223,14 @@ public class Chat {
    *          history of "that" values for this request/response interaction
    * @return bot's reply
    */
-  String respond(String input, History<String> contextThatHistory) {
+  String respond(String input, History<String> contextThatHistory, Locale locale) {
     History hist = thatHistory.get(0);
     String that;
     if (hist == null)
       that = MagicStrings.default_that;
     else
       that = hist.getString(0);
-    return respond(input, that, predicates.get("topic"), contextThatHistory);
+    return respond(input, that, predicates.get("topic"), contextThatHistory, locale);
   }
 
   /**
@@ -243,11 +244,12 @@ public class Chat {
 
     // MagicBooleans.trace("chat.multisentenceRespond(request: " + request +
     // ")");
+    //Locale locale = MagicBooleans.defaultLocale;
     String response = "";
     matchTrace = "";
     try {
       String normalized = bot.preProcessor.normalize(request);
-      normalized = JapaneseUtils.tokenizeSentence(normalized);
+      normalized = LanguageUtils.tokenizeSentence(normalized, bot.locale);
       // MagicBooleans.trace("in chat.multisentenceRespond(), normalized: " +
       // normalized);
       String sentences[] = bot.preProcessor.sentenceSplit(normalized);
@@ -256,7 +258,7 @@ public class Chat {
       for (int i = 0; i < sentences.length; i++) {
         // log.info("Human: "+sentences[i]);
         AIMLProcessor.trace_count = 0;
-        String reply = respond(sentences[i], contextThatHistory);
+        String reply = respond(sentences[i], contextThatHistory, bot.locale);
         response += "  " + reply;
         // log.info("Robot: "+reply);
       }

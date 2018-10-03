@@ -70,7 +70,7 @@ public class AIMLSet extends HashSet<String> {
       if (split.length > maxLength)
         return false;
       String query = MagicStrings.set_member_string + setName.toUpperCase() + " " + s;
-      String response = Sraix.sraix(null, query, "false", null, host, botid, null, "0");
+      String response = new Sraix().sraix(null, query, "false", null, host, botid, null, "0", bot.locale);
       // log.info("External "+setName+" contains "+s+"? "+response);
       if (response.equals("true")) {
         inCache.add(s);

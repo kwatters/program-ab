@@ -20,9 +20,11 @@ package org.alicebot.ab;
 */
 
 import org.alicebot.ab.utils.JapaneseUtils;
+import org.alicebot.ab.utils.LanguageUtils;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Manage client predicates
@@ -38,13 +40,13 @@ public class Predicates extends HashMap<String, String> {
    *          predicate value
    * @return predicate value
    */
-  public String put(String key, String value) {
-    // MagicBooleans.trace("predicates.put(key: " + key + ", value: " + value +
-    // ")");
-    if (MagicBooleans.jp_tokenize) {
-      if (key.equals("topic"))
-        value = JapaneseUtils.tokenizeSentence(value);
-    }
+  public String put(String key, String value, Locale locale) {
+    // MagicBooleans.trace("predicates.put(key: " + key + ", value: " + value +")");
+      if (key.equals("topic")) {
+        // TODO: generically define which keys should be tokenized before saving to predicates! This is really odd to test for this here.
+        // TODO: Is this call needed ?  what are we tokenizing in the predicates? and why?
+        value = LanguageUtils.tokenizeSentence(value, locale);
+      }
     if (key.equals("topic") && value.length() == 0)
       value = MagicStrings.default_get;
     if (value.equals(MagicStrings.too_much_recursion))

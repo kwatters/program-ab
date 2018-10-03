@@ -1,5 +1,7 @@
 package org.alicebot.ab.utils;
 
+import java.util.Locale;
+
 import org.alicebot.ab.AIMLProcessor;
 import org.alicebot.ab.MagicBooleans;
 import org.alicebot.ab.MagicStrings;
@@ -34,6 +36,9 @@ public class JapaneseUtils {
   }
 
   /**
+   * Legacy support for japanese tokenization.  
+   * 
+   * TODO: remove this and replace with kuromoji from Lucene/Solr
    * Morphological analysis of an input sentence that contains an AIML pattern.
    *
    * @param sentence
@@ -42,8 +47,6 @@ public class JapaneseUtils {
    */
   public static String tokenizeSentence(String sentence) {
     // log.info("tokenizeSentence "+sentence);
-    if (!MagicBooleans.jp_tokenize)
-      return sentence;
     String result = "";
     result = tokenizeXML(sentence);
     while (result.contains("$ "))

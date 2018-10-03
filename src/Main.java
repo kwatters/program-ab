@@ -23,6 +23,7 @@ import org.alicebot.ab.*;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Main {
 
@@ -38,10 +39,11 @@ public class Main {
 
   public static void mainFunction(String[] args) {
     String botName = "alice2";
-    MagicBooleans.jp_tokenize = false;
+    //MagicBooleans.jp_tokenize = false;
     MagicBooleans.trace_mode = true;
     String action = "chat";
     System.out.println(MagicStrings.program_name_version);
+    Locale locale = MagicBooleans.defaultLocale;
     for (String s : args) {
       // System.out.println(s);
       String[] splitArg = s.split("=");
@@ -60,12 +62,8 @@ public class Main {
           else
             MagicBooleans.trace_mode = false;
         }
-        if (option.equals("morph")) {
-          if (value.equals("true"))
-            MagicBooleans.jp_tokenize = true;
-          else {
-            MagicBooleans.jp_tokenize = false;
-          }
+        if (option.equals("locale") || option.equals("morph")) {
+          locale = new Locale(value);
         }
       }
     }
@@ -73,7 +71,7 @@ public class Main {
       System.out.println("Working Directory = " + MagicStrings.root_path);
     Graphmaster.enableShortCuts = true;
     // Timer timer = new Timer();
-    Bot bot = new Bot(botName, MagicStrings.root_path, action); //
+    Bot bot = new Bot(botName, MagicStrings.root_path, action, locale); //
     // EnglishNumberToWords.makeSetMap(bot);
     // getGloss(bot, "c:/ab/data/wn30-lfs/wne-2006-12-06.xml");
     if (MagicBooleans.make_verbs_sets_maps)
