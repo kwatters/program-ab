@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>program-ab</groupId>
   <artifactId>program-ab-kw</artifactId>
-  <version>0.0.8.3</version>
+  <version>0.0.8.4</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -73,5 +73,22 @@
 		<artifactId>slf4j-api</artifactId>
 		<version>1.7.21</version>
 	</dependency>
+	
+	
+	<!--  Lucene based analyzers -->
+	<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-analyzers-common</artifactId>
+		<version>7.4.0</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-kuromoji -->
+	<dependency>
+	    <groupId>org.apache.lucene</groupId>
+	    <artifactId>lucene-analyzers-kuromoji</artifactId>
+	    <version>7.4.0</version>
+	</dependency>
+		
   </dependencies>
 </project>
