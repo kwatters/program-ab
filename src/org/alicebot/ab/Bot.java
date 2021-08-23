@@ -557,7 +557,7 @@ public class Bot {
             bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fn), StandardCharsets.UTF_8));
             fileMap.put(fileName, bw);
             bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "\n" + "<aiml>\n");
-            bw.write(copyright);
+            // bw.write(copyright);
             // bw.newLine();
           }
           bw.write(Category.categoryToAIML(c) + "\n");
