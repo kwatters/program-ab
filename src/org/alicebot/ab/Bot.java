@@ -48,7 +48,8 @@ public class Bot {
   public HashMap<String, AIMLSet> setMap = new HashMap<String, AIMLSet>();
   public HashMap<String, AIMLMap> mapMap = new HashMap<String, AIMLMap>();
   public HashSet<String> pronounSet = new HashSet<String>();
-  public String root_path = "c:/ab";
+  // public String root_path = "c:/ab"; // REALLY ? ARE YOU SERIOUS ?
+  public String root_path = "."; // if your not going to set it to null - at least do this 
   public String bot_path = root_path + "/bots";
   public String bot_name_path = bot_path + "/super";
   public String aimlif_path = bot_path + "/aimlif";
@@ -366,7 +367,7 @@ public class Bot {
    * write all AIML and AIMLIF categories
    */
   public void writeQuit() {
-    writeAIMLIFFiles();
+    // writeAIMLIFFiles();
     // log.info("Wrote AIMLIF Files");
     writeAIMLFiles();
     // log.info("Wrote AIML Files");
@@ -789,4 +790,9 @@ public class Bot {
   public SraixHandler getSraixHandler() {
     return sraixHandler;
   }
+  
+  public String toString() {
+    return String.format("%s - %s", name, root_path); 
+  }
+  
 }

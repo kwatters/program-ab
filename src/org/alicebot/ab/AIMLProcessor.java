@@ -26,6 +26,11 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
@@ -1226,6 +1231,26 @@ public class AIMLProcessor {
           // log.info("node is <learnf>");
           c = new Category(0, pattern, that, "*", template, MagicStrings.learnf_aiml_file);
           ps.chatSession.bot.learnfGraph.addCategory(c);
+          
+          try {
+            File newCatFile = new File(ps.chatSession.bot.aiml_path + File.separator + MagicStrings.learnf_aiml_file);
+            FileOutputStream fos = null;
+            if (newCatFile.exists()) {
+              fos = new FileOutputStream(newCatFile, true);
+            } else {
+              fos = new FileOutputStream(newCatFile);
+              String header = new String("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n".getBytes(), StandardCharsets.UTF_8);
+              fos.write(header.getBytes());
+            }
+          
+            fos.write((Category.categoryToAIML(c) + "\n").getBytes());
+            fos.close();
+            // bw.newLine();
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }          
+          
+          
         }
         ps.chatSession.bot.brain.addCategory(c);
         // ps.chatSession.bot.brain.printgraph();
