@@ -558,6 +558,9 @@ public class AIMLProcessor {
     String value = result.trim();
     if (predicateName != null) {
       ps.chatSession.predicates.put(predicateName, result);
+      if (ps.chatSession.bot.listener != null) {
+        ps.chatSession.bot.listener.onChangePredicate(predicateName, result);
+      }
       MagicBooleans.trace("Set predicate " + predicateName + " to " + result + " in " + ps.leaf.category.inputThatTopic());
     }
     if (varName != null) {
