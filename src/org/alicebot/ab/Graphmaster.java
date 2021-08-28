@@ -123,10 +123,6 @@ public class Graphmaster {
     Path p = Path.sentenceToPath(inputThatTopic);
     addPath(p, category);
     categoryCnt++;
-    
-    if (bot != null && bot.listener != null) {
-      bot.listener.onAddCategory(category);            
-    }          
   }
 
   boolean thatStarTopicStar(Path path) {
