@@ -105,13 +105,13 @@ pipeline {
          echo "====== installing into repo ======"
          
          sshagent(credentials : ['myrobotlab2.pem']) {
-               sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./target/${ARTIFACT_ID}-0.0.1-SNAPSHOT.zip ubuntu@repo.myrobotlab.org:/home/ubuntu'
+               sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./target/${ARTIFACT_ID}-0.0.1-SNAPSHOT.jar ubuntu@repo.myrobotlab.org:/home/ubuntu'
                sh '''
-                  ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@repo.myrobotlab.org sudo mvn install:install-file  -Dfile=${ARTIFACT_ID}-0.0.1-SNAPSHOT.zip \
+                  ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@repo.myrobotlab.org sudo mvn install:install-file  -Dfile=${ARTIFACT_ID}-0.0.1-SNAPSHOT.jar \
                         -DgroupId=${GROUP_ID} \
                         -DartifactId=${ARTIFACT_ID} \
                         -Dversion=${VERSION} \
-                        -Dpackaging=zip \
+                        -Dpackaging=jar \
                         -DlocalRepositoryPath=/repo/artifactory/myrobotlab/
                   
                   ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@repo.myrobotlab.org sudo mv \
