@@ -461,4 +461,8 @@ public class Category {
     }
   };
 
+  public String toString() {
+    return String.format("topic:%s that:%s pattern:%s", topic, that, pattern);
+  }
+  
 }

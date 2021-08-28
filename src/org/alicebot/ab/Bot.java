@@ -59,6 +59,8 @@ public class Bot {
   public String maps_path = bot_path + "/maps";
   private SraixHandler sraixHandler = null;
   public Locale locale = MagicBooleans.defaultLocale;
+
+  public ProgramABListener listener;
   
   /**
    * Set all directory path variables for this bot
@@ -125,7 +127,7 @@ public class Bot {
    * Constructor (default action, default path, default bot name)
    */
   public Bot() {
-    this(MagicStrings.default_bot);
+    this(MagicStrings.default_bot, (ProgramABListener) null);
   }
 
   /**
@@ -133,10 +135,14 @@ public class Bot {
    * 
    * @param name
    */
-  public Bot(String name) {
-    this(name, MagicStrings.root_path);
+  public Bot(String name, ProgramABListener listener) {
+    this(name, MagicStrings.root_path, listener);
   }
 
+  public Bot(String name, String path, ProgramABListener listener) {
+    this(name, path, "auto", MagicBooleans.defaultLocale, listener);
+  }
+  
   /**
    * Constructor (default action)
    *
@@ -144,12 +150,27 @@ public class Bot {
    * @param path
    */
   public Bot(String name, String path) {
-    this(name, path, "auto", MagicBooleans.defaultLocale);
+    this(name, path, "auto", MagicBooleans.defaultLocale, null);
   }
 
-  public Bot(String name, String path, Locale locale) {
-    this(name, path, "auto", locale);
+  public Bot(String name) {
+    this(name, MagicStrings.root_path, "auto", MagicBooleans.defaultLocale, null);
   }
+  
+  public Bot(String botName, String path, String action, Locale locale) {
+    this(botName, path, "auto", locale, null);
+  }
+
+
+
+  public Bot(String name, String path, Locale locale, ProgramABListener listener) {
+    this(name, path, "auto", locale, listener);
+  }
+  
+  public Bot(String name, String path, Locale locale) {
+    this(name, path, "auto", locale, null);
+  }
+
   
   /**
    * Constructor
@@ -161,13 +182,14 @@ public class Bot {
    * @param action
    *          Program AB action
    */
-  public Bot(String name, String path, String action, Locale locale) {
+  public Bot(String name, String path, String action, Locale locale, ProgramABListener listener) {
     int cnt = 0;
     int elementCnt = 0;
     this.name = name;
     this.locale = locale;
     setAllPaths(path);
     this.brain = new Graphmaster(this);
+    this.listener = listener;
 
     this.learnfGraph = new Graphmaster(this, "learnf");
     this.learnGraph = new Graphmaster(this, "learn");
