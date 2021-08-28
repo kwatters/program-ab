@@ -1230,6 +1230,12 @@ public class AIMLProcessor {
           c = new Category(0, pattern, that, "*", template, MagicStrings.learnf_aiml_file);
           ps.chatSession.bot.learnfGraph.addCategory(c);
         }
+        
+        // callback to programab listener if learn or learnf new category
+        if (ps.chatSession.bot.listener != null) {
+          ps.chatSession.bot.listener.onAddCategory(c);
+        }
+        
         ps.chatSession.bot.brain.addCategory(c);
         // ps.chatSession.bot.brain.printgraph();
       }
