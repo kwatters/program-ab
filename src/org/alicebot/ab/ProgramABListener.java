@@ -11,20 +11,20 @@ public interface ProgramABListener {
    * @param predicateName
    * @param result
    */
-  public void onChangePredicate(String predicateName, String result);
+  public void onChangePredicate(Chat chat, String predicateName, String result);
 
   /**
    * Callback when category is added from a the result of matching a learnf tag
    * 
    * @param c - the category added
    */
-  public void onLearnF(Category c);
+  public void onLearnF(Bot bot, Category c);
 
   /**
    * Callback when category is added from a the result of matching a learn tag
    * 
    * @param c - the category added
    */
-  public void onLearn(Category c);
+  public void onLearn(Bot bot, Category c);
 
 }

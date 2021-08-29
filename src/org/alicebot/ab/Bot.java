@@ -60,7 +60,7 @@ public class Bot {
   private SraixHandler sraixHandler = null;
   public Locale locale = MagicBooleans.defaultLocale;
 
-  public ProgramABListener listener;
+  public transient ProgramABListener listener;
   
   /**
    * Set all directory path variables for this bot
@@ -811,4 +811,9 @@ public class Bot {
   public SraixHandler getSraixHandler() {
     return sraixHandler;
   }
+  
+  public String toString() {
+    return String.format("%s - %s", name, aiml_path);
+  }
+  
 }
