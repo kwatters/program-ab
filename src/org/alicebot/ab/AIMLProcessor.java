@@ -1225,17 +1225,18 @@ public class AIMLProcessor {
           // log.info("node is <learn>");
           c = new Category(0, pattern, that, "*", template, MagicStrings.null_aiml_file);
           ps.chatSession.bot.learnGraph.addCategory(c);
+          if (ps.chatSession.bot.listener != null) {
+            ps.chatSession.bot.listener.onLearn(c);
+          }
         } else {// learnf
           // log.info("node is <learnf>");
           c = new Category(0, pattern, that, "*", template, MagicStrings.learnf_aiml_file);
           ps.chatSession.bot.learnfGraph.addCategory(c);
+          if (ps.chatSession.bot.listener != null) {
+            ps.chatSession.bot.listener.onLearnF(c);
+          }
         }
-        
-        // callback to programab listener if learn or learnf new category
-        if (ps.chatSession.bot.listener != null) {
-          ps.chatSession.bot.listener.onAddCategory(c);
-        }
-        
+
         ps.chatSession.bot.brain.addCategory(c);
         // ps.chatSession.bot.brain.printgraph();
       }
