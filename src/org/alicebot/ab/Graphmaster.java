@@ -122,7 +122,7 @@ public class Graphmaster {
     //
     Path p = Path.sentenceToPath(inputThatTopic);
     addPath(p, category);
-    categoryCnt++;
+    categoryCnt++;    
   }
 
   boolean thatStarTopicStar(Path path) {
