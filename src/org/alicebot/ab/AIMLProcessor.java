@@ -1226,14 +1226,14 @@ public class AIMLProcessor {
           c = new Category(0, pattern, that, "*", template, MagicStrings.null_aiml_file);
           ps.chatSession.bot.learnGraph.addCategory(c);
           if (ps.chatSession.bot.listener != null) {
-            ps.chatSession.bot.listener.onLearn(ps.chatSession.bot, c);
+            ps.chatSession.bot.listener.onLearn(ps.chatSession, c);
           }
         } else {// learnf
           // log.info("node is <learnf>");
           c = new Category(0, pattern, that, "*", template, MagicStrings.learnf_aiml_file);
           ps.chatSession.bot.learnfGraph.addCategory(c);
           if (ps.chatSession.bot.listener != null) {
-            ps.chatSession.bot.listener.onLearnF(ps.chatSession.bot, c);
+            ps.chatSession.bot.listener.onLearnF(ps.chatSession, c);
           }
         }
 

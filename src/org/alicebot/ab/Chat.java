@@ -283,4 +283,9 @@ public class Chat {
   public static void setMatchTrace(String newMatchTrace) {
     matchTrace = newMatchTrace;
   }
+  
+  public String toString() {
+    return String.format("%s <-> %s", customerId, bot.name);
+  }
+  
 }

@@ -14,17 +14,19 @@ public interface ProgramABListener {
   public void onChangePredicate(Chat chat, String predicateName, String result);
 
   /**
-   * Callback when category is added from a the result of matching a learnf tag
+   * Callback when category is added from a the result of matching a learn tag
    * 
-   * @param c - the category added
+   * @param chat - current chat that processed the learn tag
+   * @param c - learned category
    */
-  public void onLearnF(Bot bot, Category c);
+  public void onLearnF(Chat chat, Category c);
 
   /**
    * Callback when category is added from a the result of matching a learn tag
    * 
-   * @param c - the category added
+   * @param chat - current chat that processed the learnf tag
+   * @param c - learned category
    */
-  public void onLearn(Bot bot, Category c);
+  public void onLearn(Chat chat, Category c);
 
 }
