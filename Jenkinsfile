@@ -6,9 +6,9 @@ pipeline {
 
     environment {
         pom = readMavenPom()
-        VERSION = pom.getVersion()
-        GROUP_ID = pom.getGroupId()
-        ARTIFACT_ID = pom.getArtifactId()
+        VERSION = '0.0.8.7'
+        GROUP_ID = 'program-ab'
+        ARTIFACT_ID = '0.0.8.7'
     }
 
    options {
