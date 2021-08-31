@@ -1,8 +1,3 @@
-version = "2.0.${BUILD_NUMBER}"
-groupId = 'program-ab'
-artifactId = 'program-ab'
-resourceDir = 'program-ab'
-groupIdPath = groupId.replaceAll('\\.', '/')
 
 pipeline {
 
@@ -10,11 +5,10 @@ pipeline {
    agent  { label 'linux' }
 
     environment {
-        VERSION = "${version}"
-        GROUP_ID = "${groupId}"
-        GROUP_ID_PATH = "${groupIdPath}"
-        ARTIFACT_ID = "${artifactId}"
-        RESOURCE_DIR = "${resourceDir}"
+        pom = readMavenPom()
+        VERSION = pom.getVersion()
+        GROUP_ID = pom.getGroupId()
+        ARTIFACT_ID = pom.getArtifactId()
     }
 
    options {
@@ -76,13 +70,11 @@ pipeline {
                if (isUnix()) {
                   sh '''
                         echo "building ${JOB_NAME}..."
-                        # echo "${VERSION}" > resource/${RESOURCE_DIR}/version.txt
                         mvn package
                   '''
                } else {
                   bat('''
                         type "building ${JOB_NAME}..."
-                        # type '${VERSION}' > 'resource/${RESOURCE_DIR}/version.txt'
                         mvn package
                   ''')
                } // isUnix
@@ -99,15 +91,15 @@ pipeline {
 */      
 
    } // stages
-// program-ab-kw-0.0.8.7.jar
+
    post {
     success {
          echo "====== installing into repo ======"
          
          sshagent(credentials : ['myrobotlab2.pem']) {
-               sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./target/${ARTIFACT_ID}-kw-0.0.8.7.jar ubuntu@repo.myrobotlab.org:/home/ubuntu'
+               sh 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./target/${ARTIFACT_ID}-${VERSION}.jar ubuntu@repo.myrobotlab.org:/home/ubuntu'
                sh '''
-                  ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@repo.myrobotlab.org sudo mvn install:install-file  -Dfile=${ARTIFACT_ID}-kw-0.0.8.7.jar \
+                  ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@repo.myrobotlab.org sudo mvn install:install-file  -Dfile=${ARTIFACT_ID}-${VERSION}.jar \
                         -DgroupId=${GROUP_ID} \
                         -DartifactId=${ARTIFACT_ID} \
                         -Dversion=${VERSION} \
@@ -115,8 +107,8 @@ pipeline {
                         -DlocalRepositoryPath=/repo/artifactory/myrobotlab/
                   
                   ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@repo.myrobotlab.org sudo mv \
-                  /repo/artifactory/myrobotlab/${GROUP_ID_PATH}/${ARTIFACT_ID}/maven-metadata-local.xml \
-                         /repo/artifactory/myrobotlab/${GROUP_ID_PATH}/${ARTIFACT_ID}/maven-metadata.xml
+                  /repo/artifactory/myrobotlab/${GROUP_ID}/${ARTIFACT_ID}/maven-metadata-local.xml \
+                         /repo/artifactory/myrobotlab/${GROUP_ID}/${ARTIFACT_ID}/maven-metadata.xml
 
                '''
 
