@@ -16,6 +16,7 @@ pipeline {
      skipDefaultCheckout(true)
    }
 
+
    tools {
       maven 'M3' // defined in global tools - maven is one of the only installers that works well for global tool
    // jdk 'openjdk-11-linux' // defined in global tools
@@ -23,6 +24,14 @@ pipeline {
    }
 
    stages {
+
+      stage('clean') {
+         steps {
+            echo '====== clean ======'
+            cleanWs()
+         }
+      }
+
       stage('init') {
          steps {
             echo '======= init ======='
@@ -40,25 +49,6 @@ pipeline {
          steps {
             echo '====== check out ======'
             checkout scm
-         }
-      }
-
-      stage('clean') {
-         steps {
-            echo '====== clean ======'
-            // cleanWs()
-
-            script {
-               if (isUnix()) {
-                  sh '''
-                     mvn clean
-                  '''
-               } else {
-                  bat('''
-                     mvn clean
-                  ''')
-               }
-            }
          }
       }
 
