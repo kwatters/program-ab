@@ -25,7 +25,7 @@ pipeline {
    stages {
       stage('init') {
          steps {
-            echo '====== init ======'
+            echo '======= init ======='
             script {
                if (isUnix()) {
                   echo sh(script: 'env|sort', returnStdout: true)
