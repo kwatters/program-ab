@@ -5,7 +5,6 @@ pipeline {
    agent  { label 'linux' }
 
     environment {
-        pom = readMavenPom()
         VERSION = '0.0.8.7'
         GROUP_ID = 'program-ab'
         ARTIFACT_ID = '0.0.8.7'
