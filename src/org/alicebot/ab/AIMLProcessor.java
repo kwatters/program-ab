@@ -1580,7 +1580,7 @@ public class AIMLProcessor {
     try {
       // MagicBooleans.trace("in AIMLProcessor.recursEval(), node string: " +
       // DomUtils.nodeToString(node));
-      String nodeName = node.getNodeName();
+      String nodeName = node.getNodeName().toLowerCase();
       // MagicBooleans.trace("in AIMLProcessor.recursEval(), nodeName: " +
       // nodeName);
       // MagicBooleans.trace("in AIMLProcessor.recursEval(),
