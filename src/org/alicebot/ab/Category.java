@@ -295,7 +295,7 @@ public class Category {
       String[] splitPattern = pattern.split(" ");
       String rpattern = "";
       for (String w : splitPattern) {
-        if (w.startsWith("<SET>") || w.startsWith("<BOT") || w.startsWith("NAME=")) {
+        if (w.startsWith("<SET>") || w.startsWith("</SET>") || w.startsWith("<BOT") || w.startsWith("</BOT>") || w.startsWith("NAME=")) {
           w = w.toLowerCase();
         }
         rpattern = rpattern + " " + w;
@@ -315,7 +315,7 @@ public class Category {
       if (!category.getThat().equals("*")) {
         thatStatement = "<that>" + category.getThat() + "</that>";
       }
-      result = topicStart + "<category><pattern>" + pattern + "</pattern>" + thatStatement + NL + "<template>" + category.getTemplate() + "</template>" + NL + "</category>"
+      result = topicStart + "<category><pattern>" + pattern + "</pattern>" + thatStatement + NL + "<template>" + category.getTemplate().trim() + "</template>" + NL + "</category>"
           + topicEnd;
     } catch (Exception ex) {
       ex.printStackTrace();
