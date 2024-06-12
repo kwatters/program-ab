@@ -94,6 +94,35 @@ public class Bot {
   /**
    * Set all directory path variables for this bot
    *
+   * @param both_dir_path
+   *          root directory of the bot's folder
+   */
+  public void setAllPaths(String both_dir_path) {
+    if (MagicBooleans.trace_mode)
+      log.info("Name = " + name + " Path = " + both_dir_path);
+    aiml_path = both_dir_path + "/aiml";
+    aimlif_path = both_dir_path + "/aimlif";
+    config_path = both_dir_path + "/config";
+    log_path = both_dir_path + "/logs";
+    sets_path = both_dir_path + "/sets";
+    maps_path = both_dir_path + "/maps";
+    if (MagicBooleans.trace_mode) {
+      log.info(root_path);
+      log.info(bot_path);
+      log.info(both_dir_path);
+      log.info(aiml_path);
+      log.info(aimlif_path);
+      log.info(config_path);
+      log.info(log_path);
+      log.info(sets_path);
+      log.info(maps_path);
+    }
+  }
+
+  
+  /**
+   * Set all directory path variables for this bot
+   *
    * @param root
    *          root directory of Program AB
    * @param name
